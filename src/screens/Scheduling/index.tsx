@@ -1,11 +1,13 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
-import { BackButton } from '../../components/BackButton';
-
 import { StatusBar } from 'react-native';
 
-
 import ArrowSvg from '../../assets/arrow.svg';
+
+import { useTheme } from 'styled-components';
+import { BackButton } from '../../components/BackButton';
+import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
+
 
 import {
   Container,
@@ -14,7 +16,9 @@ import {
   RentalPeriod,
   DateInfo,
   DateTitle,
-  DateValue
+  DateValue,
+  Content,
+  Footer
 } from './styles';
 
 export function Scheduling() {
@@ -52,6 +56,14 @@ export function Scheduling() {
           </DateInfo>
         </RentalPeriod>
       </Header>
+
+      <Content>
+        <Calendar />
+      </Content>
+
+      <Footer>
+        <Button title='Escolher período do aluguel' />
+      </Footer>
     </Container>
   );
 }
