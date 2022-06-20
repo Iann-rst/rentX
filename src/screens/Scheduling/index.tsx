@@ -8,6 +8,7 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
 
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -21,8 +22,15 @@ import {
   Footer
 } from './styles';
 
+
 export function Scheduling() {
   const theme = useTheme();
+  const navigation = useNavigation<any>();
+
+  function handleConfirmRental() {
+    navigation.navigate('SchedulingDetails');
+  }
+
   return (
     <Container>
       <Header>
@@ -62,7 +70,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title='Escolher período do aluguel' />
+        <Button title='Confirmar' onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

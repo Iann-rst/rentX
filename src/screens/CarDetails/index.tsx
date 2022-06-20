@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -33,9 +34,10 @@ import {
 } from './styles';
 
 export function CarDetails() {
+  const navigation = useNavigation<any>();
 
-  function Alerta() {
-    Alert.alert("Botão de Voltar")
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling');
   }
   return (
     <Container>
@@ -45,7 +47,7 @@ export function CarDetails() {
       /> */}
 
       <Header>
-        <BackButton onPress={Alerta} />
+        <BackButton onPress={() => { }} />
       </Header>
 
       <CarImage>
@@ -84,7 +86,7 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Escolher período do aluguel" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );
