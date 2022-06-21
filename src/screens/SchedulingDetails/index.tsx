@@ -2,7 +2,7 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 import { BackButton } from '../../components/BackButton';
@@ -18,6 +18,7 @@ import gasolineSvg from '../../assets/gasoline.svg';
 import exchangeSvg from '../../assets/exchange.svg';
 import peopleSvg from '../../assets/people.svg';
 
+import { CarDTO } from '../../dtos/CarDTO';
 
 import {
   Container,
@@ -45,9 +46,17 @@ import {
   Footer
 } from './styles';
 
+
+interface Params {
+  car: CarDTO;
+}
+
 export function SchedulingDetails() {
   const theme = useTheme();
   const navigation = useNavigation<any>();
+
+  const route = useRoute();
+  const { car } = route.params as Params;
 
   function handleConfirm() {
     navigation.navigate('SchedulingComplete');
