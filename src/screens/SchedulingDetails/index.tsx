@@ -74,10 +74,12 @@ export function SchedulingDetails() {
       ...dates,
     ];
 
-    //Vincula o carro a um usuário com id = 1
+    //Vincula o carro e o período alugado a um usuário com id = 1
     await api.post('schedules_byuser', {
       user_id: 1,
-      car
+      car,
+      startDate: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+      endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
     });
 
     api.put(`/schedules_bycars/${car.id}`, {
