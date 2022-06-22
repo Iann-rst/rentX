@@ -74,6 +74,12 @@ export function SchedulingDetails() {
       ...dates,
     ];
 
+    //Vincula o carro a um usuário com id = 1
+    await api.post('schedules_byuser', {
+      user_id: 1,
+      car
+    });
+
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
