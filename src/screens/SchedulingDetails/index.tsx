@@ -57,6 +57,8 @@ interface RentalPeriod {
 }
 
 export function SchedulingDetails() {
+  const [loading, setLoading] = useState(false);
+
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
 
   const theme = useTheme();
@@ -67,6 +69,7 @@ export function SchedulingDetails() {
   const rentTotal = Number(dates.length * car.rent.price);
 
   async function handleConfirm() {
+    setLoading(true);
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
 
     const unavailable_dates = [
@@ -85,7 +88,11 @@ export function SchedulingDetails() {
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
-    }).then(() => navigation.navigate('SchedulingComplete')).catch(() => Alert.alert('Não foi possível confirmar o agendamento.'))
+    }).then(() => navigation.navigate('SchedulingComplete'))
+      .catch(() => {
+        setLoading(false);
+        Alert.alert('Não foi possível confirmar o agendamento.')
+      })
   }
 
   function handleBackButton() {
@@ -173,7 +180,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirm} />
+        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirm} enabled={!loading} loading={loading} />
       </Footer>
     </Container>
   );
