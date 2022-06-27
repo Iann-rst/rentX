@@ -20,6 +20,12 @@ import theme from './src/styles/theme';
 
 import { Routes } from './src/routes';
 
+//Desativar avisos de libs que estão com as dependências desatualizadas
+import { LogBox } from 'react-native'
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
+])
+
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
