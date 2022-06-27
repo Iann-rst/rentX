@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet, BackHandler } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
 
@@ -95,7 +95,14 @@ export function Home() {
     }
 
     fetchCars();
-  }, [])
+  }, []);
+
+  //Evitar que o usuário volte para a tela de splash
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    })
+  }, []);
 
   return (
     <Container>
@@ -108,9 +115,12 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>
-            Total de {cars.length} carros
-          </TotalCars>
+          {
+            !loading &&
+            <TotalCars>
+              Total de {cars.length} carros
+            </TotalCars>
+          }
         </HeaderContent>
       </Header>
 
