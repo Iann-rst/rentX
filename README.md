@@ -28,7 +28,7 @@
 - [x] Criar um menu flutuante na tela Home;
 
 ## Layout da aplicação
-O Layout da aplicação no [figma](https://www.figma.com/file/TkiGiIs79fUOVjbOKxLCx5/RentX-Ignite).
+O Layout da aplicação está no [figma](https://www.figma.com/file/TkiGiIs79fUOVjbOKxLCx5/RentX-Ignite).
 
 
 
