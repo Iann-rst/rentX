@@ -95,7 +95,7 @@ export function MyCars() {
           <Content>
             <Appointments>
               <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-              <AppointmentsQuantity>{cars.length >= 10 ? cars.length : `0${cars.length}`}</AppointmentsQuantity>
+              <AppointmentsQuantity>{cars.length >= 10 ? cars.length : cars.length === 0 ? `0` : `0${cars.length}`}</AppointmentsQuantity>
             </Appointments>
 
             <FlatList data={cars}
