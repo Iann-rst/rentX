@@ -20,7 +20,7 @@ import Logo from '../../assets/logo.svg';
 import { Ionicons } from '@expo/vector-icons';
 
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import { useTheme } from 'styled-components';
 
@@ -125,7 +125,7 @@ export function Home() {
       </Header>
 
       {
-        loading ? <Load /> :
+        loading ? <LoadAnimation /> :
 
           <CarList
             data={cars}
