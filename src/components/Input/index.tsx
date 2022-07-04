@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInputProps } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
@@ -12,17 +12,45 @@ import {
 
 //Tipando Icones
 interface Props extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>['name']
+  iconName: React.ComponentProps<typeof Feather>['name'];
+  value?: string;
 }
 
-export function Input({ iconName, ...rest }: Props) {
+export function Input({
+  iconName,
+  value,
+  ...rest
+}: Props) {
   const theme = useTheme();
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
+  function handleInputFocused() {
+    setIsFocused(true);
+  }
+
+  function handleInputBlur() {
+    setIsFocused(false);
+    setIsFilled(!!value);
+  }
+
   return (
-    <Container>
+    <Container isFocused={isFocused}>
+
       <IconContainer>
-        <Feather name={iconName} color={theme.colors.text_details} size={24} />
+        <Feather
+          name={iconName}
+          color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_details}
+          size={24}
+        />
       </IconContainer>
-      <InputText {...rest} />
+
+      <InputText
+        onFocus={handleInputFocused}
+        onBlur={handleInputBlur}
+        {...rest}
+      />
     </Container>
   );
 }

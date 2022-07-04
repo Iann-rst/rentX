@@ -14,23 +14,47 @@ import {
 
 //Tipando Icones
 interface Props extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>['name']
+  iconName: React.ComponentProps<typeof Feather>['name'];
+  value?: string;
 }
 
-export function PasswordInput({ iconName, ...rest }: Props) {
+export function PasswordInput({
+  iconName,
+  value,
+  ...rest
+}: Props) {
+
   const theme = useTheme();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   function handlePasswordVisibilityChange() {
     setIsPasswordVisible(prevState => !prevState);
   }
 
+  function handleInputFocus() {
+    setIsFocused(true);
+  }
+
+  function handleInputBlur() {
+    setIsFocused(false);
+    setIsFilled(!!value);
+  }
+
   return (
-    <Container>
+    <Container isFocused={isFocused}>
       <IconContainer>
-        <Feather name={iconName} color={theme.colors.text_details} size={24} />
+        <Feather
+          name={iconName}
+          color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_details}
+          size={24}
+        />
+
       </IconContainer>
       <InputText
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
         secureTextEntry={isPasswordVisible}
         {...rest}
       />
