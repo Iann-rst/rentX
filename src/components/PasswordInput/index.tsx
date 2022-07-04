@@ -43,8 +43,8 @@ export function PasswordInput({
   }
 
   return (
-    <Container isFocused={isFocused}>
-      <IconContainer>
+    <Container>
+      <IconContainer isFocused={isFocused}>
         <Feather
           name={iconName}
           color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_details}
@@ -53,6 +53,7 @@ export function PasswordInput({
 
       </IconContainer>
       <InputText
+        isFocused={isFocused}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         secureTextEntry={isPasswordVisible}
@@ -60,7 +61,7 @@ export function PasswordInput({
       />
 
       <BorderlessButton onPress={handlePasswordVisibilityChange}>
-        <IconContainer>
+        <IconContainer isFocused={isFocused}>
           <Feather
             name={isPasswordVisible ? 'eye' : 'eye-off'}
             color={theme.colors.text_details}
