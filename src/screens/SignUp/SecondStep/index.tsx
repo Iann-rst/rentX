@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import {
@@ -25,10 +25,20 @@ import {
   Footer
 } from './styles';
 
+interface Params {
+  user: {
+    name: string;
+    email: string;
+    cnh: string;
+  }
+}
+
 export function SecondStep() {
   const theme = useTheme();
-
+  const route = useRoute();
   const navigation = useNavigation<any>();
+
+  const { user } = route.params as Params;
 
   function handleBack() {
     navigation.goBack();
