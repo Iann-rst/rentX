@@ -9,7 +9,7 @@ import {
   Alert
 } from 'react-native';
 
-
+import { Confirmation } from '../../Confirmation';
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { Button } from '../../../components/Button';
@@ -59,9 +59,12 @@ export function SecondStep() {
 
     /** Se não der erro:
      ***  Enviar para API e cadastrar
-     * 
-     * 
      */
+    navigation.navigate('Confirmation', {
+      nextScreenRoute: 'SignIn',
+      title: 'Conta Criada!',
+      message: `Agora é só fazer login\n e aproveitar.`
+    });
   }
 
   return (
