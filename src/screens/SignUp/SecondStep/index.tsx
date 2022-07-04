@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
 
 
@@ -34,6 +35,9 @@ interface Params {
 }
 
 export function SecondStep() {
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
   const theme = useTheme();
   const route = useRoute();
   const navigation = useNavigation<any>();
@@ -42,6 +46,22 @@ export function SecondStep() {
 
   function handleBack() {
     navigation.goBack();
+  }
+
+  function handleRegister() {
+    if (!password || !passwordConfirm) {
+      return Alert.alert('Informe a senha e a confirmação.');
+    }
+
+    if (password != passwordConfirm) {
+      return Alert.alert('As senhas não são iguais.');
+    }
+
+    /** Se não der erro:
+     ***  Enviar para API e cadastrar
+     * 
+     * 
+     */
   }
 
   return (
@@ -68,14 +88,26 @@ export function SecondStep() {
 
           <Form>
             <FormTitle>02. Senha</FormTitle>
-            <PasswordInput iconName="lock" placeholder="Senha" />
-            <PasswordInput iconName="lock" placeholder="Repetir senha" />
+            <PasswordInput
+              iconName="lock"
+              placeholder="Senha"
+              onChangeText={setPassword}
+              value={password}
+            />
+
+            <PasswordInput
+              iconName="lock"
+              placeholder="Repetir senha"
+              onChangeText={setPasswordConfirm}
+              value={passwordConfirm}
+            />
+
           </Form>
 
           <Footer>
             <Button
               title='Cadastrar'
-              onPress={() => { }}
+              onPress={handleRegister}
               color={theme.colors.success}
             />
           </Footer>
