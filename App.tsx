@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { AppProvider } from './src/hooks/';
+
 import {
   useFonts,
   Inter_400Regular,
@@ -65,7 +67,9 @@ export default function App() {
       style={{ flex: 1 }}
     >
       <ThemeProvider theme={theme}>
-        <Routes />
+        <AppProvider>
+          <Routes />
+        </AppProvider>
       </ThemeProvider>
     </View>
   );
