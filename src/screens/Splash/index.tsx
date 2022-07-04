@@ -49,7 +49,7 @@ export function Splash() {
 
   //Depois que a animação acabar, chama a tela Home
   function startApp() {
-    navigation.navigate('Home');
+    navigation.navigate('SignIn');
   }
 
   useEffect(() => {
