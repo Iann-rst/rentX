@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
+import { useAuth } from '../../hooks/auth';
+
 import {
   StatusBar,
   KeyboardAvoidingView,
@@ -30,6 +32,8 @@ export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { signIn } = useAuth();
+
   const navigation = useNavigation<any>();
 
   async function handleSignIn() {
@@ -43,6 +47,7 @@ export function SignIn() {
       Alert.alert('Tudo certo!');
 
       //Fazer login
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert('Opa', error.message);
