@@ -7,8 +7,10 @@ interface ActiveOptionProps {
   active: boolean;
 }
 
-export const Container = styled.View`
-  flex: 1;
+//Depois mudar container para View novamente
+export const Container = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false
+})`
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 
@@ -67,7 +69,6 @@ export const PhotoButton = styled(RectButton)`
   right: 10px;
 `;
 export const Content = styled.View`
-  flex: 1;
   padding: 0 24px;
   margin-top: 122px;
 `;
@@ -95,4 +96,6 @@ export const OptionTitle = styled.Text<ActiveOptionProps>`
   font-family: ${({ theme, active }) => active ? theme.fonts.secondary_600 : theme.fonts.primary_500};
   color: ${({ theme, active }) => active ? theme.colors.title : theme.colors.text_details};
 
-`;  
+`;
+
+export const Section = styled.View``;
