@@ -33,7 +33,7 @@ import {
 
 export function Profile() {
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [avatar, setAvatar] = useState(user.avatar);
   const [name, setName] = useState(user.name);
   const [driverLicense, setDriverLicense] = useState(user.driver_license);
@@ -45,8 +45,9 @@ export function Profile() {
     navigation.goBack();
   }
 
-  function handleSignOut() {
 
+  function handleSignOut() {
+    signOut();
   }
 
   //Função para trocar a foto do usuário
