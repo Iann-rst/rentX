@@ -8,9 +8,7 @@ interface ActiveOptionProps {
 }
 
 //Depois mudar container para View novamente
-export const Container = styled.ScrollView.attrs({
-  showsVerticalScrollIndicator: false
-})`
+export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 
