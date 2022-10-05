@@ -30,6 +30,10 @@
 ## Layout da aplicação
 O Layout da aplicação está no [figma](https://www.figma.com/file/TkiGiIs79fUOVjbOKxLCx5/RentX-Ignite).
 
+## :camera: Screenshot
+https://user-images.githubusercontent.com/48128325/194090912-fb246490-8cf6-433f-bb3f-1d3c3f71f0d2.mp4
+
+
 
 
 
